@@ -4,6 +4,10 @@ import pickle
 import pandas as pd
 import os
 import traceback
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+print("PORT:", os.environ.get("PORT"))
 
 app = Flask(__name__)
 
