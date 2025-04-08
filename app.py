@@ -3,6 +3,7 @@ import numpy as np
 import pickle
 import pandas as pd
 import os
+import traceback
 
 app = Flask(__name__)
 
@@ -58,7 +59,3 @@ def predict():
 
     except Exception as e:
         return jsonify({'error': str(e), 'trace': str(traceback.format_exc())}), 500
-
-if __name__ == '__main__':
-    import traceback
-    app.run(host='0.0.0.0', port=5001)
