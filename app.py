@@ -21,12 +21,17 @@ with open('nilaiku_xgb_tuned_model.pkl', 'rb') as file:
         best_model = model_wrapper.best_estimator_
     else:
         best_model = model_wrapper
+        
 @app.before_request
 def check_api_key():
     if request.path == '/predict':
         auth_header = request.headers.get("Authorization")
         if auth_header != f"Bearer {FLASK_API_KEY}":
             return jsonify({"error": "Unauthorized"}), 401
+        
+@app.route("/", methods=["GET"])
+def home():
+    return "ML API is running", 200
         
 @app.route('/predict', methods=['POST'])
 def predict():
