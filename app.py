@@ -7,7 +7,7 @@ import traceback
 
 app = Flask(__name__)
 
-FLASK_API_KEY = os.environ.get("FLASK_API_KEY", "your-secret-key")
+FLASK_API_KEY = os.environ.get("FLASK_API_KEY", "c43649ac42bc8e0259106ffd7cb9571cda6a03a1010d2c2c6415bab08dbf98e3")
 
 # Muat model terbaik dari BayesSearchCV
 with open('nilaiku_xgb_tuned_model.pkl', 'rb') as file:
