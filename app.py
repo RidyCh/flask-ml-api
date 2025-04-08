@@ -31,7 +31,7 @@ def check_api_key():
         
 @app.route("/", methods=["GET"])
 def home():
-    return "ML API is running", 200
+    return jsonify({"message": "ML API is up and running"}), 401
         
 @app.route('/predict', methods=['POST'])
 def predict():
