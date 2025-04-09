@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 print("PORT:", os.environ.get("PORT"))
 
 app = Flask(__name__)
+app.debug = True
 
 FLASK_API_KEY = os.environ.get("FLASK_API_KEY", "c43649ac42bc8e0259106ffd7cb9571cda6a03a1010d2c2c6415bab08dbf98e3")
 
@@ -27,9 +28,9 @@ def check_api_key():
     if request.path == '/predict':
         auth_header = request.headers.get("Authorization")
         if auth_header != f"Bearer {FLASK_API_KEY}":
-            return jsonify({"error": "Unauthorized"}), 401
+            return jsonify({"error": "Unauthorized"}), 200
         
-@app.route("/", methods=["GET"])
+@app.route("/home", methods=["GET"])
 def home():
     return jsonify({"message": "ML API is up and running"}), 401
         
@@ -71,4 +72,4 @@ def predict():
     
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
