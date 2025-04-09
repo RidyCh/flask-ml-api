@@ -1,3 +1,5 @@
+print("Loaded app.py")
+
 from flask import Flask, request, jsonify
 import numpy as np
 import pickle
@@ -30,8 +32,8 @@ def check_api_key():
         if auth_header != f"Bearer {FLASK_API_KEY}":
             return jsonify({"error": "Unauthorized"}), 200
         
-@app.route("/home", methods=["GET"])
-def home():
+@app.route("/", methods=["GET"])
+def index():
     return jsonify({"message": "ML API is up and running"}), 401
         
 @app.route('/predict', methods=['POST'])
@@ -70,6 +72,6 @@ def predict():
     except Exception as e:
         return jsonify({'error': str(e), 'trace': str(traceback.format_exc())}), 500
     
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port, debug=True)
+# if __name__ == '__main__':
+#     port = int(os.environ.get("PORT", 8080))
+#     app.run(host='0.0.0.0', port=port, debug=True)
