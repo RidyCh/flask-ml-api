@@ -36,12 +36,12 @@ def check_api_key():
     if request.path == '/predict':
         auth_header = request.headers.get("Authorization")
         if auth_header != f"Bearer {FLASK_API_KEY}":
-            return jsonify({"error": "Unauthorized"}), 200
+            return jsonify({"error": "Unauthorized"}), 401
         
 # Endpoint untuk mengecek status API
 @app.route("/", methods=["GET"])
 def index():
-    return jsonify({"message": "ML API is up and running"}), 401
+    return jsonify({"message": "ML API is up and running"}), 200
         
 # Endpoint utama untuk prediksi nilai
 @app.route('/predict', methods=['POST'])
